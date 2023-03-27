@@ -22,9 +22,16 @@ public class PikachuScript : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space) == true && pikachuIsAlive == true) {
             myRigidBody.velocity = Vector2.up * flapStrength;
         }
+        if (transform.position.y <= -50) {
+            death();
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision) {
+        death();
+    }
+    
+    public void death() {
         gameOverSound.Play();
         logic.gameOver();
         logic.alive = false;
